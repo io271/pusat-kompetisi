@@ -3,2258 +3,1114 @@
 
 <head>
 
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Admin — Pusat Kompetisi</title>
-
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-    }
-
-
-    body {
-
-      margin: 0;
-
-      font-family:
-        system-ui,
-        -apple-system,
-        "Segoe UI",
-        sans-serif;
-
-      background: #f5f7fb;
-
-      color: #172033;
-
-    }
-
-
-    header {
-
-      background: #11162a;
-
-      color: white;
-
-      padding: 18px 6%;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-    }
-
-
-    header a {
-
-      color: white;
-
-      text-decoration: none;
-
-    }
-
-
-    main {
-
-      max-width: 1000px;
-
-      margin: 30px auto;
-
-      padding: 0 20px;
-
-    }
-
-
-    .panel {
-
-      background: white;
-
-      border: 1px solid #e2e6ee;
-
-      border-radius: 16px;
-
-      padding: 24px;
-
-      margin-bottom: 20px;
-
-    }
-
-
-    h1,
-    h2 {
-
-      margin-top: 0;
-
-    }
-
-
-    label {
-
-      display: block;
-
-      font-size: 13px;
-
-      font-weight: 700;
-
-      margin-top: 12px;
-
-    }
-
-
-    input,
-    select,
-    textarea {
-
-      width: 100%;
-
-      padding: 11px;
-
-      margin-top: 6px;
-
-      border: 1px solid #dfe3eb;
-
-      border-radius: 9px;
-
-      font: inherit;
-
-      background: white;
-
-    }
-
-
-    input[type="file"] {
-
-      padding: 9px;
-
-    }
-
-
-    textarea {
-
-      min-height: 100px;
-
-      resize: vertical;
-
-    }
-
-
-    .grid {
-
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 14px;
-
-    }
-
-
-    .full {
-
-      grid-column: 1 / -1;
-
-    }
-
-
-    button {
-
-      border: 0;
-
-      border-radius: 9px;
-
-      padding: 11px 15px;
-
-      cursor: pointer;
-
-      font: inherit;
-
-      background: #5b5ce2;
-
-      color: white;
-
-    }
-
-
-    button:hover {
-
-      opacity: 0.9;
-
-    }
-
-
-    button.secondary {
-
-      background: #eef0f5;
-
-      color: #172033;
-
-    }
-
-
-    button.danger {
-
-      background: #d33;
-
-    }
-
-
-    button:disabled {
-
-      opacity: 0.5;
-
-      cursor: not-allowed;
-
-    }
-
-
-    .actions {
-
-      display: flex;
-
-      gap: 8px;
-
-      justify-content: flex-end;
-
-      margin-top: 18px;
-
-    }
-
-
-    .item {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      align-items: center;
-
-      border: 1px solid #e5e8ef;
-
-      border-radius: 11px;
-
-      padding: 13px;
-
-      margin: 9px 0;
-
-    }
-
-
-    .item-info {
-
-      display: flex;
-
-      gap: 14px;
-
-      align-items: center;
-
-    }
-
-
-    .item-poster {
-
-      width: 70px;
-
-      height: 70px;
-
-      border-radius: 8px;
-
-      overflow: hidden;
-
-      background: #eef0f5;
-
-      flex-shrink: 0;
-
-    }
-
-
-    .item-poster img {
-
-      width: 100%;
-
-      height: 100%;
-
-      object-fit: cover;
-
-    }
-
-
-    .item-actions {
-
-      display: flex;
-
-      gap: 7px;
-
-    }
-
-
-    .muted {
-
-      color: #687386;
-
-      font-size: 14px;
-
-    }
-
-
-    .error {
-
-      color: #c62828;
-
-      margin-top: 10px;
-
-    }
-
-
-    .success {
-
-      color: #18753c;
-
-      margin-top: 10px;
-
-    }
-
-
-    .hidden {
-
-      display: none !important;
-
-    }
-
-
-    #posterPreview {
-
-      margin-top: 12px;
-
-    }
-
-
-    #posterPreview img {
-
-      max-width: 220px;
-
-      max-height: 280px;
-
-      border-radius: 10px;
-
-      border: 1px solid #ddd;
-
-      object-fit: contain;
-
-    }
-
-
-    @media (max-width: 700px) {
-
-      .grid {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .full {
-
-        grid-column: auto;
-
-      }
-
-
-      .item {
-
-        align-items: flex-start;
-
-        flex-direction: column;
-
-      }
-
-
-      .item-info {
-
-        width: 100%;
-
-      }
-
-
-      .item-actions {
-
-        width: 100%;
-
-      }
-
-
-      .item-actions button {
-
-        flex: 1;
-
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Admin - Pusat Kompetisi</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+}
+
+header{
+  background:#11162a;
+  color:white;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header a{
+  color:white;
+  text-decoration:none;
+}
+
+main{
+  max-width:1100px;
+  margin:30px auto;
+  padding:0 20px;
+}
+
+.panel{
+  background:white;
+  border:1px solid #e2e6ee;
+  border-radius:16px;
+  padding:24px;
+  margin-bottom:20px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+label{
+  display:block;
+  margin-top:10px;
+  font-size:13px;
+  font-weight:700;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:11px;
+  margin-top:6px;
+  border:1px solid #dfe3eb;
+  border-radius:9px;
+  font:inherit;
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+button{
+  border:0;
+  border-radius:9px;
+  padding:11px 15px;
+  cursor:pointer;
+  font:inherit;
+  background:#5b5ce2;
+  color:white;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.secondary{
+  background:#eef0f5;
+  color:#172033;
+}
+
+.danger{
+  background:#d33;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top:20px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:15px;
+  border:1px solid #e2e6ee;
+  border-radius:12px;
+  margin:12px 0;
+}
+
+.item-left{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.poster-small{
+  width:80px;
+  height:80px;
+  background:#eef0f5;
+  border-radius:10px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.poster-small img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.poster-preview img{
+  max-width:220px;
+  max-height:300px;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
+
+.stage-row{
+  display:grid;
+  grid-template-columns:2fr 1fr auto;
+  gap:10px;
+  margin:10px 0;
+}
+
+.muted{
+  color:#687386;
+}
+
+.error{
+  color:#c62828;
+  margin-top:10px;
+}
+
+.success{
+  color:#18753c;
+  margin-top:10px;
+}
+
+@media(max-width:700px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+}
+
+</style>
 
 </head>
 
-
 <body>
-
 
 <header>
 
-  <strong>
-    🏆 Pusat Kompetisi — Admin
-  </strong>
+<strong>
+🏆 Pusat Kompetisi - Admin
+</strong>
 
-
-  <a href="index.html">
-    Lihat situs publik
-  </a>
+<a href="index.html">
+Lihat situs publik
+</a>
 
 </header>
 
-
-
 <main>
 
+<section
+  id="loginPanel"
+  class="panel"
+>
 
-  <!-- ========================= -->
-  <!-- LOGIN -->
-  <!-- ========================= -->
+<h2>
+🔐 Login Admin
+</h2>
 
+<form id="loginForm">
 
-  <section
-    id="loginPanel"
-    class="panel"
-  >
+<label>
 
-    <h1>
-      🔐 Masuk Admin
-    </h1>
+Email
 
+<input
+  id="loginEmail"
+  type="email"
+  required
+>
 
-    <p class="muted">
+</label>
 
-      Masuk untuk menambah,
-      mengubah, atau menghapus
-      kompetisi.
+<label>
 
-    </p>
+Password
 
+<input
+  id="loginPassword"
+  type="password"
+  required
+>
 
-    <form id="loginForm">
+</label>
 
+<div class="actions">
 
-      <label>
+<button type="submit">
 
-        Email
+Masuk
 
-        <input
-          id="loginEmail"
-          type="email"
-          autocomplete="username"
-          required
-        >
+</button>
 
-      </label>
+</div>
 
+<div
+  id="loginError"
+  class="error"
+></div>
 
+</form>
 
-      <label>
+</section>
 
-        Password
+<section
+  id="adminPanel"
+  class="hidden"
+>
 
-        <input
-          id="loginPassword"
-          type="password"
-          autocomplete="current-password"
-          required
-        >
+<div class="panel">
 
-      </label>
+<div
+  style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  "
+>
 
+<div>
 
+<h2>
+Panel Admin
+</h2>
 
-      <div class="actions">
+<div
+  id="adminEmail"
+  class="muted"
+></div>
 
-        <button type="submit">
+</div>
 
-          Masuk
+<button
+  id="logoutBtn"
+  class="secondary"
+  type="button"
+>
 
-        </button>
+Keluar
 
-      </div>
+</button>
 
+</div>
 
-      <div
-        id="loginError"
-        class="error"
-      ></div>
+</div>
 
+<form
+  id="competitionForm"
+  class="panel"
+>
 
-    </form>
+<h2 id="formTitle">
 
-  </section>
+Tambah Kompetisi
 
+</h2>
 
+<input
+  id="competitionId"
+  type="hidden"
+>
 
-  <!-- ========================= -->
-  <!-- ADMIN -->
-  <!-- ========================= -->
+<div class="grid">
 
+<label>
 
-  <section
-    id="adminPanel"
-    class="hidden"
-  >
+Nama Kompetisi
 
+<input
+  id="name"
+  required
+>
 
+</label>
 
-    <!-- HEADER ADMIN -->
+<label>
 
+Bidang
 
-    <div class="panel">
+<input
+  id="subject"
+  required
+>
 
+</label>
 
-      <div
-        style="
-          display:flex;
-          justify-content:space-between;
-          gap:10px;
-          align-items:center;
-        "
-      >
+<label>
 
+Tingkat
 
-        <div>
+<input
+  id="level"
+>
 
-          <h1
-            style="margin-bottom:4px"
-          >
+</label>
 
-            Panel Admin
+<label>
 
-          </h1>
+Penyelenggara
 
+<input
+  id="organizer"
+>
 
-          <span
-            id="adminEmail"
-            class="muted"
-          ></span>
+</label>
 
-        </div>
+<label>
 
+Deadline
 
-        <button
-          id="logoutBtn"
-          class="secondary"
-          type="button"
-        >
+<input
+  id="deadline"
+  type="date"
+  required
+>
 
-          Keluar
+</label>
 
-        </button>
+<label>
 
+Mode
 
-      </div>
+<select id="mode">
 
+<option>
+Daring
+</option>
 
-    </div>
+<option>
+Luring
+</option>
 
+<option>
+Hibrida
+</option>
 
+</select>
 
-    <!-- ========================= -->
-    <!-- FORM KOMPETISI -->
-    <!-- ========================= -->
+</label>
 
+<label>
 
-    <form
-      id="competitionForm"
-      class="panel"
-    >
+Biaya
 
+<input
+  id="fee"
+>
 
-      <h2 id="formTitle">
+</label>
 
-        Tambah kompetisi
+<label class="full">
 
-      </h2>
+Link Kompetisi
 
+<input
+  id="link"
+  type="url"
+>
 
-      <input
-        id="competitionId"
-        type="hidden"
-      >
+</label>
 
+<label class="full">
 
+Deskripsi
 
-      <div class="grid">
+<textarea
+  id="description"
+></textarea>
 
+</label>
 
-        <!-- NAMA -->
+<label class="full">
 
+Poster
 
-        <label>
+<input
+  id="posterFile"
+  type="file"
+  accept="image/jpeg,image/png"
+>
 
-          Nama kompetisi
+</label>
 
-          <input
-            id="name"
-            required
-            placeholder="Contoh: Olimpiade Matematika Nasional"
-          >
+<div
+  id="posterPreview"
+  class="poster-preview full"
+></div>
 
-        </label>
+<div class="full">
 
+<h3>
+Tahapan Kompetisi
+</h3>
 
+<div id="stagesContainer">
 
-        <!-- SUBJECT -->
+</div>
 
+<button
+  id="addStageBtn"
+  type="button"
+>
 
-        <label>
++ Tambah Tahap
 
-          Bidang / mata pelajaran
+</button>
 
-          <input
-            id="subject"
-            required
-            placeholder="Contoh: Matematika"
-          >
+</div>
 
-        </label>
+</div>
 
+<div
+  id="formMessage"
+></div>
 
+<div class="actions">
 
-        <!-- LEVEL -->
+<button
+  id="cancelEditBtn"
+  class="secondary hidden"
+  type="button"
+>
 
+Batal
 
-        <label>
+</button>
 
-          Tingkat
+<button
+  id="saveBtn"
+  type="submit"
+>
 
-          <input
-            id="level"
-            placeholder="Contoh: Nasional"
-          >
+Simpan Kompetisi
 
-        </label>
+</button>
 
+</div>
 
+</form>
 
-        <!-- ORGANIZER -->
+<section class="panel">
 
+<h2>
 
-        <label>
+Daftar Kompetisi
 
-          Penyelenggara
+</h2>
 
-          <input
-            id="organizer"
-            placeholder="Contoh: Universitas XYZ"
-          >
+<div id="competitionList">
 
-        </label>
+Memuat...
 
+</div>
 
+</section>
 
-        <!-- DEADLINE -->
-
-
-        <label>
-
-          Batas pendaftaran
-
-          <input
-            id="deadline"
-            type="date"
-            required
-          >
-
-        </label>
-
-
-
-        <!-- DATE -->
-
-
-        <label>
-
-          Tanggal kompetisi
-
-          <input
-            id="date"
-            type="date"
-            required
-          >
-
-        </label>
-
-
-
-        <!-- MODE -->
-
-
-        <label>
-
-          Mode
-
-          <select id="mode">
-
-            <option value="Daring">
-              Daring
-            </option>
-
-            <option value="Luring">
-              Luring
-            </option>
-
-            <option value="Hibrida">
-              Hibrida
-            </option>
-
-          </select>
-
-        </label>
-
-
-
-        <!-- FEE -->
-
-
-        <label>
-
-          Biaya
-
-          <input
-            id="fee"
-            placeholder="Gratis / Rp50.000"
-          >
-
-        </label>
-
-
-
-        <!-- POSTER -->
-
-
-        <label class="full">
-
-          Poster kompetisi
-
-          <input
-            id="posterFile"
-            type="file"
-            accept="image/jpeg,image/png"
-          >
-
-
-          <small class="muted">
-
-            Format:
-            JPG, JPEG, atau PNG.
-            Maksimal 5 MB.
-
-          </small>
-
-
-          <div
-            id="posterPreview"
-          ></div>
-
-
-        </label>
-
-
-
-        <!-- LINK -->
-
-
-        <label class="full">
-
-          Link pendaftaran /
-          website kompetisi
-
-          <input
-            id="link"
-            type="url"
-            placeholder="https://..."
-          >
-
-        </label>
-
-
-
-        <!-- DESCRIPTION -->
-
-
-        <label class="full">
-
-          Deskripsi
-
-          <textarea
-            id="description"
-            placeholder="Informasi tambahan tentang kompetisi..."
-          ></textarea>
-
-        </label>
-
-
-      </div>
-
-
-
-      <div
-        id="formMessage"
-      ></div>
-
-
-
-      <div class="actions">
-
-
-        <button
-          id="cancelEditBtn"
-          type="button"
-          class="secondary hidden"
-        >
-
-          Batal edit
-
-        </button>
-
-
-        <button
-          id="saveBtn"
-          type="submit"
-        >
-
-          Simpan kompetisi
-
-        </button>
-
-
-      </div>
-
-
-    </form>
-
-
-
-    <!-- ========================= -->
-    <!-- DAFTAR -->
-    <!-- ========================= -->
-
-
-    <section class="panel">
-
-
-      <h2>
-
-        Daftar kompetisi
-
-      </h2>
-
-
-      <div
-        id="competitionList"
-      >
-
-        <p class="muted">
-
-          Memuat...
-
-        </p>
-
-      </div>
-
-
-    </section>
-
-
-  </section>
-
+</section>
 
 </main>
 
-
-
-<!-- ========================= -->
-<!-- SUPABASE -->
-<!-- ========================= -->
-
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-
 <script>
 
-"use strict";
+const ADMIN_EMAIL="raphael09wijaya@gmail.com";
 
+const client=supabase.createClient(
+  "https://ybwxzmqkjeuksylhhskb.supabase.co",
+  "sb_publishable_xrfG7-giWrMWqLTJibk7RQ_18vOUpC8"
+);
 
+const $=id=>document.getElementById(id);
 
-/*
-========================================
-SUPABASE CONFIG
-========================================
-*/
+function addStage(name="",date=""){
 
+  stagesContainer.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div class="stage-row">
 
-const SUPABASE_URL =
-  "https://ybwxzmqkjeuksylhhskb.supabase.co";
+      <input
+        class="stage-name"
+        placeholder="Nama tahap"
+        value="${name}"
+      >
 
+      <input
+        class="stage-date"
+        type="date"
+        value="${date}"
+      >
 
-const SUPABASE_KEY =
-  "sb_publishable_xrfG7-giWrMWqLTJibk7RQ_18vOUpC8";
+      <button
+        type="button"
+        onclick="this.parentElement.remove()"
+      >
+        X
+      </button>
 
-
-const client =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+    </div>
+    `
   );
-
-
-
-/*
-========================================
-HELPER
-========================================
-*/
-
-
-const $ =
-  id =>
-    document.getElementById(id);
-
-
-
-function escapeHtml(value) {
-
-  return String(value ?? "")
-    .replace(
-      /[&<>"']/g,
-      character => ({
-
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-
-      }[character])
-    );
 
 }
 
+addStageBtn.onclick=()=>addStage();
 
+function resetForm(){
 
-function formatDate(value) {
+  competitionForm.reset();
 
-  if (!value) {
+  competitionId.value="";
 
-    return "-";
+  posterPreview.innerHTML="";
+
+  stagesContainer.innerHTML="";
+
+  addStage();
+
+  formTitle.textContent=
+    "Tambah Kompetisi";
+
+  cancelEditBtn.classList.add(
+    "hidden"
+  );
+
+}
+
+async function uploadPoster(){
+
+  const file=
+    posterFile.files[0];
+
+  if(!file){
+    return null;
+  }
+
+  const extension=
+    file.name.split(".").pop();
+
+  const filename=
+    crypto.randomUUID()+
+    "."+
+    extension;
+
+  const upload=
+    await client.storage
+      .from("posters")
+      .upload(
+        filename,
+        file
+      );
+
+  if(upload.error){
+
+    throw upload.error;
 
   }
 
+  return client.storage
+    .from("posters")
+    .getPublicUrl(filename)
+    .data
+    .publicUrl;
 
-  const date =
-    new Date(
-      String(value).length === 10
-        ? value + "T00:00:00"
-        : value
+}
+
+let rows=[];
+
+async function loadCompetitions(){
+
+  const result=
+    await client
+      .from("competitions")
+      .select("*")
+      .order(
+        "deadline",
+        {
+          ascending:true
+        }
+      );
+
+  if(result.error){
+
+    competitionList.innerHTML=
+      result.error.message;
+
+    return;
+
+  }
+
+  rows=result.data||[];
+
+  if(!rows.length){
+
+    competitionList.innerHTML=
+      "Belum ada kompetisi.";
+
+    return;
+
+  }
+
+  competitionList.innerHTML=
+    rows.map(
+      competition=>`
+
+      <div class="item">
+
+        <div class="item-left">
+
+          ${
+            competition.poster_url?
+
+            `
+            <div class="poster-small">
+
+              <img
+                src="${competition.poster_url}"
+              >
+
+            </div>
+            `
+
+            :
+
+            ""
+          }
+
+          <div>
+
+            <strong>
+
+              ${competition.name}
+
+            </strong>
+
+            <div class="muted">
+
+              ${competition.subject||""}
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div>
+
+          <button
+            onclick="editCompetition('${competition.id}')"
+            class="secondary"
+          >
+            Edit
+          </button>
+
+          <button
+            onclick="deleteCompetition('${competition.id}')"
+            class="danger"
+          >
+            Hapus
+          </button>
+
+        </div>
+
+      </div>
+
+      `
+    ).join("");
+
+}
+
+window.editCompetition=function(id){
+
+  const competition=
+    rows.find(
+      row=>
+        String(row.id)===
+        String(id)
     );
 
+  if(!competition){
+    return;
+  }
 
-  if (isNaN(date)) {
+  competitionId.value=
+    competition.id||"";
 
-    return value;
+  name.value=
+    competition.name||"";
+
+  subject.value=
+    competition.subject||"";
+
+  level.value=
+    competition.level||"";
+
+  organizer.value=
+    competition.organizer||"";
+
+  deadline.value=
+    competition.deadline||"";
+
+  mode.value=
+    competition.mode||"Daring";
+
+  fee.value=
+    competition.fee||"";
+
+  link.value=
+    competition.link||"";
+
+  description.value=
+    competition.description||"";
+
+  posterPreview.innerHTML=
+    competition.poster_url?
+
+    `
+    <img
+      src="${competition.poster_url}"
+    >
+    `
+
+    :
+
+    "";
+
+  stagesContainer.innerHTML="";
+
+  if(
+    Array.isArray(
+      competition.stages
+    )
+  ){
+
+    competition.stages.forEach(
+      stage=>
+        addStage(
+          stage.name,
+          stage.date
+        )
+    );
+
+  }else{
+
+    addStage();
 
   }
 
+  formTitle.textContent=
+    "Edit Kompetisi";
 
-  return date.toLocaleDateString(
-    "id-ID",
-    {
-      day: "numeric",
-      month: "long",
-      year: "numeric"
+  cancelEditBtn.classList.remove(
+    "hidden"
+  );
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+window.deleteCompetition=
+async function(id){
+
+  if(
+    !confirm(
+      "Hapus kompetisi?"
+    )
+  ){
+    return;
+  }
+
+  const result=
+    await client
+      .from("competitions")
+      .delete()
+      .eq("id",id);
+
+  if(result.error){
+
+    alert(
+      result.error.message
+    );
+
+    return;
+
+  }
+
+  loadCompetitions();
+
+};
+
+posterFile.onchange=()=>{
+
+  const file=
+    posterFile.files[0];
+
+  if(!file){
+    return;
+  }
+
+  posterPreview.innerHTML=
+    `
+    <img
+      src="${
+        URL.createObjectURL(
+          file
+        )
+      }"
+    >
+    `;
+
+};
+
+cancelEditBtn.onclick=
+  resetForm;
+
+competitionForm.onsubmit=
+async event=>{
+
+  event.preventDefault();
+
+  try{
+
+    const poster=
+      await uploadPoster();
+
+    const stages=
+      [
+        ...document.querySelectorAll(
+          ".stage-row"
+        )
+      ]
+      .map(
+        row=>({
+
+          name:
+            row.querySelector(
+              ".stage-name"
+            ).value,
+
+          date:
+            row.querySelector(
+              ".stage-date"
+            ).value
+
+        })
+      )
+      .filter(
+        stage=>
+          stage.name&&
+          stage.date
+      );
+
+    const payload={
+
+      name:name.value,
+
+      subject:subject.value,
+
+      level:level.value,
+
+      organizer:organizer.value,
+
+      deadline:deadline.value,
+
+      mode:mode.value,
+
+      fee:fee.value,
+
+      link:link.value,
+
+      description:description.value,
+
+      stages:stages
+
+    };
+
+    if(poster){
+
+      payload.poster_url=
+        poster;
+
     }
-  );
 
-}
+    let result;
 
+    if(competitionId.value){
 
+      result=
+        await client
+          .from("competitions")
+          .update(payload)
+          .eq(
+            "id",
+            competitionId.value
+          );
 
-/*
-========================================
-ELEMENTS
-========================================
-*/
+    }else{
 
-const ADMIN_EMAIL = "raphael09wijaya@gmail.com";
-const loginPanel =
-  $("loginPanel");
+      result=
+        await client
+          .from("competitions")
+          .insert(payload);
 
+    }
 
-const adminPanel =
-  $("adminPanel");
+    if(result.error){
 
+      throw result.error;
 
-const loginForm =
-  $("loginForm");
+    }
 
+    formMessage.className=
+      "success";
 
-const loginEmail =
-  $("loginEmail");
+    formMessage.textContent=
+      "Berhasil disimpan.";
 
+    resetForm();
 
-const loginPassword =
-  $("loginPassword");
+    loadCompetitions();
 
+  }
 
-const loginError =
-  $("loginError");
+  catch(error){
 
+    formMessage.className=
+      "error";
 
-const logoutBtn =
-  $("logoutBtn");
+    formMessage.textContent=
+      error.message;
 
+  }
 
-const competitionForm =
-  $("competitionForm");
+};
 
+loginForm.onsubmit=
+async event=>{
 
-const competitionList =
-  $("competitionList");
+  event.preventDefault();
 
+  const login=
+    await client.auth
+      .signInWithPassword({
 
-const formMessage =
-  $("formMessage");
+        email:
+          loginEmail.value,
 
+        password:
+          loginPassword.value
 
-const formTitle =
-  $("formTitle");
+      });
 
+  if(login.error){
 
-const cancelEditBtn =
-  $("cancelEditBtn");
+    loginError.textContent=
+      login.error.message;
 
+    return;
 
-const posterFile =
-  $("posterFile");
+  }
 
+  if(
+    login.data.user.email
+    !==
+    ADMIN_EMAIL
+  ){
 
-const posterPreview =
-  $("posterPreview");
+    await client.auth.signOut();
 
+    loginError.textContent=
+      "Bukan admin.";
 
-const saveBtn =
-  $("saveBtn");
+    return;
 
-
-
-/*
-========================================
-LOGIN
-========================================
-*/
-
-
-function showAdmin(user) {
+  }
 
   loginPanel.classList.add(
     "hidden"
   );
 
-
   adminPanel.classList.remove(
     "hidden"
   );
 
+  adminEmail.textContent=
+    login.data.user.email;
 
-  $("adminEmail")
-    .textContent =
-      user?.email || "";
+  loadCompetitions();
 
-}
+};
 
-
-
-function showLogin() {
-
-  adminPanel.classList.add(
-    "hidden"
-  );
-
-
-  loginPanel.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-
-loginForm.addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-
-    loginError.textContent =
-      "Sedang masuk...";
-
-
-    const {
-      data,
-      error
-    } =
-      await client.auth
-        .signInWithPassword({
-
-          email:
-            loginEmail.value.trim(),
-
-          password:
-            loginPassword.value
-
-        });
-
-
-if (error) {
-
-  loginError.textContent =
-    "Login gagal: " +
-    error.message;
-
-  return;
-
-}
-
-if (
-  data.user.email !==
-  ADMIN_EMAIL
-) {
+logoutBtn.onclick=
+async()=>{
 
   await client.auth.signOut();
 
-  loginError.textContent =
-    "Akses ditolak. Kamu bukan admin.";
+  location.reload();
 
-  return;
+};
 
-}
+(async()=>{
 
-loginError.textContent =
-  "";
-
-showAdmin(
-  data.user
-);
-
-await loadCompetitions();
-
-  }
-);
-
-
-
-/*
-========================================
-SESSION
-========================================
-*/
-
-
-async function checkSession() {
-
-  const {
-    data,
-    error
-  } =
+  const session=
     await client.auth
       .getSession();
 
+  if(
 
-if (
-  data.session &&
-  data.session.user.email ===
-    ADMIN_EMAIL
-) {
+    session.data.session&&
 
-  showAdmin(
-    data.session.user
-  );
+    session
+      .data
+      .session
+      .user
+      .email===ADMIN_EMAIL
 
-  await loadCompetitions();
+  ){
 
-}
-
-else {
-
-  showLogin();
-
-}
-
-}
-
-
-
-client.auth
-  .onAuthStateChange(
-    (_event, session) => {
-
-if (
-  session &&
-  session.user.email ===
-    ADMIN_EMAIL
-) {
-
-  showAdmin(
-    session.user
-  );
-
-}
-
-else {
-
-  showLogin();
-
-}
-
-    }
-  );
-
-
-
-/*
-========================================
-LOGOUT
-========================================
-*/
-
-
-logoutBtn.addEventListener(
-  "click",
-  async () => {
-
-    await client.auth
-      .signOut();
-
-
-    resetForm();
-
-
-    showLogin();
-
-  }
-);
-
-
-
-/*
-========================================
-POSTER PREVIEW
-========================================
-*/
-
-
-posterFile.addEventListener(
-  "change",
-  () => {
-
-    const file =
-      posterFile.files[0];
-
-
-    posterPreview.innerHTML =
-      "";
-
-
-    if (!file) {
-
-      return;
-
-    }
-
-
-    if (
-      ![
-        "image/jpeg",
-        "image/png"
-      ].includes(
-        file.type
-      )
-    ) {
-
-      posterFile.value =
-        "";
-
-
-      formMessage.className =
-        "error";
-
-
-      formMessage.textContent =
-        "Poster harus JPG, JPEG, atau PNG.";
-
-
-      return;
-
-    }
-
-
-    if (
-      file.size >
-      5 * 1024 * 1024
-    ) {
-
-      posterFile.value =
-        "";
-
-
-      formMessage.className =
-        "error";
-
-
-      formMessage.textContent =
-        "Ukuran poster maksimal 5 MB.";
-
-
-      return;
-
-    }
-
-
-    const url =
-      URL.createObjectURL(
-        file
-      );
-
-
-    posterPreview.innerHTML = `
-
-      <img
-        src="${url}"
-        alt="Preview poster"
-      >
-
-    `;
-
-  }
-);
-
-
-
-/*
-========================================
-UPLOAD POSTER
-========================================
-*/
-
-
-async function uploadPoster() {
-
-  const file =
-    posterFile.files[0];
-
-
-  /*
-    Tidak ada file baru.
-    Ini berguna saat EDIT.
-  */
-
-
-  if (!file) {
-
-    return null;
-
-  }
-
-
-  /*
-    Validasi format
-  */
-
-
-  const allowedTypes = [
-
-    "image/jpeg",
-
-    "image/png"
-
-  ];
-
-
-  if (
-    !allowedTypes
-      .includes(
-        file.type
-      )
-  ) {
-
-    throw new Error(
-      "Poster harus berupa JPG, JPEG, atau PNG."
-    );
-
-  }
-
-
-  /*
-    Validasi ukuran
-  */
-
-
-  if (
-    file.size >
-    5 * 1024 * 1024
-  ) {
-
-    throw new Error(
-      "Ukuran poster maksimal 5 MB."
-    );
-
-  }
-
-
-  /*
-    Buat nama unik
-  */
-
-
-  const extension =
-    file.type ===
-      "image/png"
-
-      ? "png"
-
-      : "jpg";
-
-
-  const fileName =
-    crypto.randomUUID() +
-    "." +
-    extension;
-
-
-  /*
-    Upload ke Supabase Storage
-  */
-
-
-  const {
-    error
-  } =
-    await client.storage
-      .from("posters")
-      .upload(
-        fileName,
-        file,
-        {
-
-          cacheControl:
-            "3600",
-
-          upsert:
-            false,
-
-          contentType:
-            file.type
-
-        }
-      );
-
-
-  if (error) {
-
-    throw error;
-
-  }
-
-
-  /*
-    Ambil public URL
-  */
-
-
-  const {
-    data
-  } =
-    client.storage
-      .from("posters")
-      .getPublicUrl(
-        fileName
-      );
-
-
-  return data.publicUrl;
-
-}
-
-
-
-/*
-========================================
-LOAD COMPETITIONS
-========================================
-*/
-
-
-async function loadCompetitions() {
-
-  competitionList.innerHTML =
-    "<p class='muted'>Memuat...</p>";
-
-
-  const {
-    data,
-    error
-  } =
-    await client
-      .from("competitions")
-     .select(
-  `
-    id,
-    name,
-    subject,
-    level,
-    organizer,
-    deadline,
-    date,
-    mode,
-    fee,
-    link,
-    description,
-    poster_url
-  `
-)
-      .order(
-        "deadline",
-        {
-          ascending:
-            true
-        }
-      );
-
-
-  if (error) {
-
-    competitionList.innerHTML =
-      "<p class='error'>" +
-      escapeHtml(
-        error.message
-      ) +
-      "</p>";
-
-    return;
-
-  }
-
-
-  if (
-    !data ||
-    data.length === 0
-  ) {
-
-    competitionList.innerHTML =
-      "<p class='muted'>" +
-      "Belum ada kompetisi." +
-      "</p>";
-
-    return;
-
-  }
-
-
-  competitionList.innerHTML =
-    data
-      .map(
-        competition => `
-
-          <div class="item">
-
-
-            <div class="item-info">
-
-
-              ${
-                competition.poster_url
-
-                  ?
-
-                  `
-
-                  <div
-                    class="item-poster"
-                  >
-
-                    <img
-                      src="${escapeHtml(
-                        competition.poster_url
-                      )}"
-                      alt="Poster"
-                    >
-
-                  </div>
-
-                  `
-
-                  :
-
-                  ""
-
-              }
-
-
-              <div>
-
-                <strong>
-
-                  ${escapeHtml(
-                    competition.name
-                  )}
-
-                </strong>
-
-
-                <div class="muted">
-
-                  ${escapeHtml(
-                    competition.subject
-                  )}
-
-                  ·
-
-                  ${escapeHtml(
-                    competition.level || ""
-                  )}
-
-                  ${
-                    competition.deadline
-                      ?
-
-                      " · Deadline " +
-                      formatDate(
-                        competition.deadline
-                      )
-
-                      :
-
-                      ""
-
-                  }
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-
-            <div class="item-actions">
-
-
-              <button
-                type="button"
-                class="secondary"
-                data-edit="${escapeHtml(
-                  competition.id
-                )}"
-              >
-
-                Edit
-
-              </button>
-
-
-              <button
-                type="button"
-                class="danger"
-                data-delete="${escapeHtml(
-                  competition.id
-                )}"
-              >
-
-                Hapus
-
-              </button>
-
-
-            </div>
-
-
-          </div>
-
-        `
-      )
-      .join("");
-
-
-  /*
-    EDIT BUTTON
-  */
-
-
-  competitionList
-    .querySelectorAll(
-      "[data-edit]"
-    )
-    .forEach(
-      button => {
-
-        button.addEventListener(
-          "click",
-          () =>
-            editCompetition(
-              button.dataset.edit,
-              data
-            )
-        );
-
-      }
-    );
-
-
-  /*
-    DELETE BUTTON
-  */
-
-
-  competitionList
-    .querySelectorAll(
-      "[data-delete]"
-    )
-    .forEach(
-      button => {
-
-        button.addEventListener(
-          "click",
-          () =>
-            deleteCompetition(
-              button.dataset.delete
-            )
-        );
-
-      }
-    );
-
-}
-
-
-
-/*
-========================================
-GET FORM DATA
-========================================
-*/
-
-
-function getFormData() {
-
-  return {
-
-    name:
-      $("name")
-        .value
-        .trim(),
-
-    subject:
-      $("subject")
-        .value
-        .trim(),
-
-    level:
-      $("level")
-        .value
-        .trim(),
-
-    organizer:
-      $("organizer")
-        .value
-        .trim(),
-
-    deadline:
-      $("deadline")
-        .value,
-
-    date:
-      $("date")
-        .value,
-
-    mode:
-      $("mode")
-        .value,
-
-    fee:
-      $("fee")
-        .value
-        .trim(),
-
-    link:
-      $("link")
-        .value
-        .trim(),
-
-    description:
-      $("description")
-        .value
-        .trim()
-
-  };
-
-}
-
-
-
-/*
-========================================
-SAVE COMPETITION
-========================================
-*/
-
-
-competitionForm.addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-
-    saveBtn.disabled =
-      true;
-
-
-    formMessage.className =
-      "muted";
-
-
-    formMessage.textContent =
-      "Menyimpan...";
-
-
-    try {
-
-
-      /*
-        Ambil data form
-      */
-
-
-      const payload =
-        getFormData();
-
-
-      /*
-        Upload poster
-      */
-
-
-      const posterUrl =
-        await uploadPoster();
-
-
-      /*
-        Kalau ada poster baru,
-        simpan URL-nya
-      */
-
-
-      if (posterUrl) {
-
-        payload.poster_url =
-          posterUrl;
-
-      }
-
-
-      /*
-        ID digunakan saat EDIT
-      */
-
-
-      const id =
-        $("competitionId")
-          .value;
-
-
-      let result;
-
-
-      if (id) {
-
-
-        /*
-          UPDATE
-        */
-
-
-        result =
-          await client
-            .from(
-              "competitions"
-            )
-            .update(
-              payload
-            )
-            .eq(
-              "id",
-              id
-            );
-
-      }
-
-      else {
-
-
-        /*
-          INSERT
-        */
-
-
-        result =
-          await client
-            .from(
-              "competitions"
-            )
-            .insert(
-              payload
-            );
-
-      }
-
-
-      if (result.error) {
-
-        throw result.error;
-
-      }
-
-
-      formMessage.className =
-        "success";
-
-
-      formMessage.textContent =
-        "Kompetisi berhasil disimpan!";
-
-
-      resetForm();
-
-
-      await loadCompetitions();
-
-
-    }
-
-    catch (error) {
-
-
-      console.error(
-        error
-      );
-
-
-      formMessage.className =
-        "error";
-
-
-      formMessage.textContent =
-        "Gagal menyimpan: " +
-        error.message;
-
-    }
-
-
-    finally {
-
-      saveBtn.disabled =
-        false;
-
-    }
-
-  }
-);
-
-
-
-/*
-========================================
-EDIT
-========================================
-*/
-
-
-function editCompetition(
-  id,
-  rows
-) {
-
-
-  const competition =
-    rows.find(
-      item =>
-        String(item.id) ===
-        String(id)
-    );
-
-
-  if (!competition) {
-
-    return;
-
-  }
-
-
-  $("competitionId")
-    .value =
-      competition.id || "";
-
-
-  $("name")
-    .value =
-      competition.name || "";
-
-
-  $("subject")
-    .value =
-      competition.subject || "";
-
-
-  $("level")
-    .value =
-      competition.level || "";
-
-
-  $("organizer")
-    .value =
-      competition.organizer || "";
-
-
-  $("deadline")
-    .value =
-      competition.deadline || "";
-
-
-  $("date")
-    .value =
-      competition.date || "";
-
-
-  $("mode")
-    .value =
-      competition.mode ||
-      "Daring";
-
-
-  $("fee")
-    .value =
-      competition.fee || "";
-
-
-  $("link")
-    .value =
-      competition.link || "";
-
-
-  $("description")
-    .value =
-      competition.description || "";
-
-
-  /*
-    Tampilkan poster lama
-  */
-
-
-  if (
-    competition.poster_url
-  ) {
-
-    posterPreview.innerHTML = `
-
-      <p class="muted">
-        Poster saat ini:
-      </p>
-
-      <img
-        src="${escapeHtml(
-          competition.poster_url
-        )}"
-        alt="Poster saat ini"
-      >
-
-      <p class="muted">
-        Pilih file baru jika ingin menggantinya.
-      </p>
-
-    `;
-
-  }
-
-  else {
-
-    posterPreview.innerHTML =
-      "";
-
-  }
-
-
-  formTitle.textContent =
-    "Edit kompetisi";
-
-
-  cancelEditBtn
-    .classList
-    .remove(
+    loginPanel.classList.add(
       "hidden"
     );
 
-
-  window.scrollTo({
-
-    top:
-      0,
-
-    behavior:
-      "smooth"
-
-  });
-
-}
-
-
-
-/*
-========================================
-RESET
-========================================
-*/
-
-
-function resetForm() {
-
-  competitionForm
-    .reset();
-
-
-  $("competitionId")
-    .value =
-      "";
-
-
-  formTitle.textContent =
-    "Tambah kompetisi";
-
-
-  cancelEditBtn
-    .classList
-    .add(
+    adminPanel.classList.remove(
       "hidden"
     );
 
+    adminEmail.textContent=
+      session
+        .data
+        .session
+        .user
+        .email;
 
-  posterPreview.innerHTML =
-    "";
-
-
-  formMessage.textContent =
-    "";
-
-
-  formMessage.className =
-    "";
-
-}
-
-
-
-cancelEditBtn.addEventListener(
-  "click",
-  resetForm
-);
-
-
-
-/*
-========================================
-DELETE
-========================================
-*/
-
-
-async function deleteCompetition(
-  id
-) {
-
-
-  const confirmed =
-    confirm(
-      "Yakin ingin menghapus kompetisi ini?"
-    );
-
-
-  if (!confirmed) {
-
-    return;
+    loadCompetitions();
 
   }
 
-
-  const {
-    error
-  } =
-    await client
-      .from(
-        "competitions"
-      )
-      .delete()
-      .eq(
-        "id",
-        id
-      );
-
-
-  if (error) {
-
-    alert(
-      "Gagal menghapus: " +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  await loadCompetitions();
-
-}
-
-
-
-/*
-========================================
-START
-========================================
-*/
-
-
-checkSession();
+})();
 
 </script>
-
 
 </body>
 
