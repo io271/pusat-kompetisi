@@ -665,6 +665,36 @@ async function loadCompetitions() {
                   :
                   ""
               }
+              ${
+  Array.isArray(competition.stages) &&
+  competition.stages.length > 0
+    ?
+    `
+      <p>
+        <strong>📅 Tahapan Kompetisi</strong>
+      </p>
+
+      <ul>
+
+        ${
+          competition.stages
+            .map(
+              stage => `
+                <li>
+                  ${escapeHtml(stage.name)}
+                  -
+                  ${formatDate(stage.date)}
+                </li>
+              `
+            )
+            .join("")
+        }
+
+      </ul>
+    `
+    :
+    ""
+}
 
               ${
                 competition.date
