@@ -164,7 +164,27 @@
     .card-content a:hover {
       opacity: 0.9;
     }
+.calendar-btn {
 
+  border: none;
+
+  padding: 10px 14px;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  background: #19a15f;
+
+  color: white;
+
+  font-size: 14px;
+}
+
+.calendar-btn:hover {
+
+  opacity: .9;
+}
     .loading,
     .empty,
     .error {
@@ -297,9 +317,16 @@
 <header>
   <h1>🏆 Pusat Kompetisi</h1>
 
-  <a href="admin.html">
-    Admin
-  </a>
+  <header>
+  <h1>🏆 Pusat Kompetisi</h1>
+
+  <div style="display:flex;gap:15px;">
+
+    <a href="calendar.html">
+      📅 Kalender Saya
+    </a>
+
+  </div>
 </header>
 
 <main>
@@ -753,25 +780,37 @@ async function loadCompetitions() {
                   ""
               }
 
-              ${
-                competition.link
-                  ?
-                  `
-                    <a
-                      href="${escapeHtml(
-                        competition.link
-                      )}"
+             <div style="display:flex;gap:10px;flex-wrap:wrap;">
 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Daftar /
-                      Lihat Kompetisi
-                    </a>
-                  `
-                  :
-                  ""
-              }
+  ${
+    competition.link
+      ?
+      `
+        <a
+          href="${escapeHtml(
+            competition.link
+          )}"
+
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Daftar
+        </a>
+      `
+      :
+      ""
+  }
+
+  <button
+    class="calendar-btn"
+    onclick='saveToCalendar(${JSON.stringify(
+      JSON.stringify(competition)
+    )})'
+  >
+    ➕ Kalender Saya
+  </button>
+
+</div>
 
             </div>
 
@@ -1143,7 +1182,47 @@ function setupSearch() {
 START
 ==================================================
 */
+function saveToCalendar(data) {
 
+  const competition =
+    JSON.parse(data);
+
+  let calendar =
+    JSON.parse(
+      localStorage.getItem(
+        "competitionCalendar"
+      ) || "[]"
+    );
+
+  const exists =
+    calendar.some(
+      item =>
+        item.id ===
+        competition.id
+    );
+
+  if (exists) {
+
+    alert(
+      "Kompetisi sudah ada di kalender."
+    );
+
+    return;
+  }
+
+  calendar.push(
+    competition
+  );
+
+  localStorage.setItem(
+    "competitionCalendar",
+    JSON.stringify(calendar)
+  );
+
+  alert(
+    "Berhasil ditambahkan ke kalender."
+  );
+}
 document.addEventListener(
   "DOMContentLoaded",
   loadCompetitions
