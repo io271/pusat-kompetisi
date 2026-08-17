@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1.0">
+
+<title>Kalender Kompetisi</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  padding:25px;
+  font-family:system-ui,sans-serif;
+  background:#f5f7fb;
+}
+
+h1{
+  margin-top:0;
+}
+
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+a{
+  text-decoration:none;
+}
+
+.back{
+  padding:10px 15px;
+  background:#5b5ce2;
+  color:white;
+  border-radius:10px;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:20px;
+  border:1px solid #e2e6ee;
+}
+
+.stage{
+  padding:8px 0;
+  border-bottom:1px solid #ececec;
+}
+
+.conflict{
+  margin-top:10px;
+  padding:12px;
+  border-radius:10px;
+  background:#ffe3e3;
+}
+
+button{
+  border:none;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.delete-btn{
+  background:#d32f2f;
+  color:white;
+}
+
+.empty{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="top-bar">
+
+  <h1>📅 Kalender Saya</h1>
+
+  <a
+    class="back"
+    href="index.html">
+
+    ← Kembali
+
+  </a>
+
+</div>
+
+<div id="calendar"></div>
+
+<script>
+
+const calendarContainer=
+  document.getElementById(
+    "calendar"
+  );
+
+function formatDate(value){
+
+  if(!value){
+
+    return "-";
+
+  }
+
+  const date=
+    new Date(
+      value+"T00:00:00"
+    );
+
+  return date.toLocaleDateString(
+    "id-ID",
+    {
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    }
+  );
+
+}
+
+function detectConflict(items){
+
+  const conflicts=[];
+
+  const allStages=[];
+
+  items.forEach(
+    competition=>{
+
+      if(
+        Array.isArray(
+          competition.stages
+        )
+      ){
+
+        competition.stages.forEach(
+          stage=>{
+
+            allStages.push({
+
+              competition:
+                competition.name,
+
+              stage:
+                stage.name,
+
+              date:
+                stage.date
+
+            });
+
+          }
+        );
+
+      }
+
+    }
+  );
+
+  for(
+    let i=0;
+    i<allStages.length;
+    i++
+  ){
+
+    for(
+      let j=i+1;
+      j<allStages.length;
+      j++
+    ){
+
+      if(
+
+        allStages[i].date===
+
+        allStages[j].date
+
+      ){
+
+        conflicts.push(
+
+          `${allStages[i].competition}
+          (${allStages[i].stage})
+          bertabrakan dengan
+          ${allStages[j].competition}
+          (${allStages[j].stage})
+          pada
+          ${formatDate(
+            allStages[i].date
+          )}`
+
+        );
+
+      }
+
+    }
+
+  }
+
+  return conflicts;
+
+}
+
+function removeCompetition(id){
+
+  let calendar=
+
+    JSON.parse(
+
+      localStorage.getItem(
+        "competitionCalendar"
+      )||"[]"
+
+    );
+
+  calendar=
+
+    calendar.filter(
+
+      item=>
+
+        item.id!==id
+
+    );
+
+  localStorage.setItem(
+
+    "competitionCalendar",
+
+    JSON.stringify(
+      calendar
+    )
+
+  );
+
+  loadCalendar();
+
+}
+
+function loadCalendar(){
+
+  const competitions=
+
+    JSON.parse(
+
+      localStorage.getItem(
+        "competitionCalendar"
+      )||"[]"
+
+    );
+
+  if(
+    competitions.length===0
+  ){
+
+    calendarContainer.innerHTML=
+
+      `
+      <div class="empty">
+
+        Belum ada kompetisi
+        di kalender.
+
+      </div>
+      `;
+
+    return;
+
+  }
+
+  const conflicts=
+
+    detectConflict(
+      competitions
+    );
+
+  calendarContainer.innerHTML=
+
+    competitions.map(
+
+      competition=>`
+
+      <div class="card">
+
+        <h2>
+
+          ${competition.name}
+
+        </h2>
+
+        <p>
+
+          📚
+          ${competition.subject||"-"}
+
+        </p>
+
+        <p>
+
+          🏅
+          ${competition.level||"-"}
+
+        </p>
+
+        <p>
+
+          ⏳
+          ${formatDate(
+            competition.deadline
+          )}
+
+        </p>
+
+        <h3>
+
+          Tahapan
+
+        </h3>
+
+        ${
+
+          Array.isArray(
+            competition.stages
+          )
+
+          ?
+
+          competition.stages.map(
+
+            stage=>`
+
+            <div class="stage">
+
+              ${stage.name}
+
+              -
+
+              ${formatDate(
+                stage.date
+              )}
+
+            </div>
+
+            `
+
+          ).join("")
+
+          :
+
+          ""
+
+        }
+
+        <br>
+
+        <button
+
+          class="delete-btn"
+
+          onclick="removeCompetition(
+            '${competition.id}'
+          )"
+
+        >
+
+          Hapus
+
+        </button>
+
+      </div>
+
+      `
+
+    ).join("");
+
+  if(
+    conflicts.length
+  ){
+
+    calendarContainer.innerHTML+=
+
+      `
+      <div class="card">
+
+        <h2>
+
+          ⚠️ Bentrok Jadwal
+
+        </h2>
+
+        ${
+
+          conflicts.map(
+
+            item=>`
+
+            <div
+              class="conflict"
+            >
+
+              ${item}
+
+            </div>
+
+            `
+
+          ).join("")
+
+        }
+
+      </div>
+      `;
+
+  }
+
+}
+
+loadCalendar();
+
+</script>
+
+</body>
+
+</html>
+```
