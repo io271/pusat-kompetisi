@@ -638,16 +638,29 @@ let rows=[];
 
 async function loadCompetitions(){
 
-  const result=
-    await client
-      .from("competitions")
-      .select("id,name,description,subject,level,organizer,deadline,mode,fee,link,poster_url,stages")
-      .order(
-        "deadline",
-        {
-          ascending:true
-        }
-      );
+const result=
+  await client
+    .from("competitions")
+    .select(`
+      id,
+      name,
+      subject,
+      level,
+      organizer,
+      deadline,
+      mode,
+      fee,
+      link,
+      description,
+      poster_url,
+      stages
+    `)
+    .order(
+      "deadline",
+      {
+        ascending:true
+      }
+    );
 
   if(result.error){
 
