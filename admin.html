@@ -641,7 +641,7 @@ async function loadCompetitions(){
   const result=
     await client
       .from("competitions")
-      .select("*")
+      .select("id,name,description,subject,level,organizer,deadline,mode,fee,link,poster_url,stages")
       .order(
         "deadline",
         {
